@@ -1,0 +1,4 @@
+<h1>Contestants Index</h1>
+<% @contestants.each do |contestant| %>
+  <p><%= link_to "#{contestant.name}", "/contestants/#{contestant.id}" %> - <%= contestant.age %> - <%= contestant.hometown %></p>
+<% end %>
