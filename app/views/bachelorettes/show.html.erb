@@ -1,3 +1,4 @@
 <h1><%= "#{@bachelorette.name} Show Page" %></h1>
 <p><%= @bachelorette.season_number %> - Most Violent Season Ever!</p>
 <%= link_to "Contestants", "/bachelorettes/#{@bachelorette.id}/contestants" %>
+<p>Average Age: <%= @bachelorette.average_age %></p>

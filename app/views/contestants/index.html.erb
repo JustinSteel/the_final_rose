@@ -1,4 +1,11 @@
 <h1>Contestants Index</h1>
-<% @contestants.each do |contestant| %>
-  <p><%= link_to "#{contestant.name}", "/contestants/#{contestant.id}" %> - <%= contestant.age %> - <%= contestant.hometown %></p>
+  <% @contestants.each do |contestant| %>
+    <p><%= link_to "#{contestant.name}", "/contestants/#{contestant.id}" %> - <%= contestant.age %> - <%= contestant.hometown %></p>
+  <% end %>
+<section id="hometowns">
+  <h2>These Contestants are from these hometowns:</h2>
+    <% @hometowns.each do |hometown| %>
+  <p><%= hometown %></p>
 <% end %>
+</section>
+```

@@ -41,7 +41,24 @@ RSpec.describe Contestant, type: :feature do
 
       click_link @contestant_1.name
       expect(current_path).to eq("/contestants/#{@contestant_1.id}")
+    end
 
+    it "I see a unique list of all of the hometowns that these contestants are from" do
+      # User Story 7 of 7 - Bachelorette's Contestants Index: unique hometowns
+
+      # As a visitor,
+      # When I visit a bachelorette's contestants index '/bachelorettes/:bachelorette_id/contestants',
+      
+      # I see a UNIQUE list of all of the hometowns that these contestants are from.
+      
+      # (e.g. "These Contestants are from these hometowns: Denver, Aurora, San Diego, Boston")
+      visit "/bachelorettes/#{@bachelorette_1.id}/contestants"
+        
+      within "#hometowns" do
+          expect(page).to have_content("These Contestants are from these hometowns:")
+          expect(page).to have_content(@contestant_1.hometown)
+          expect(page).to have_content(@contestant_2.hometown)
+      end
     end
   end
 end

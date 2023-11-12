@@ -5,4 +5,26 @@ RSpec.describe Outing, type: :model do
     it { should have_many :contestant_outings }
     it { should have_many(:contestants).through(:contestant_outings)}
   end
+
+  describe "instance methods" do
+    before :each do
+      @bachelorette_1 = Bachelorette.create!(name: "Ann Franks", season_number: 15)
+      @bachelorette_2 = Bachelorette.create!(name: "Hannah Banana", season_number: 13)
+      
+      @contestant_1 = @bachelorette_1.contestants.create!(name: "Dylan Barbour", age: 24, hometown: "San Diego, CA")
+      @contestant_2 = @bachelorette_1.contestants.create!(name: "Tyler Cameron", age: 26, hometown: "Jupiter, FL")
+      @contestant_3 = @bachelorette_2.contestants.create!(name: "Peter Weber", age: 27, hometown: "Westlake Village, CA")
+
+      @outing_1 = Outing.create!(name: "Skydiving", location: "New York City, NY", date: "01/01/2020")
+      @outing_2 = Outing.create!(name: "Rollercoaster", location: "Denver, CO", date: "02/02/2020")
+      @outing_3 = Outing.create!(name: "Hot Air Balloon", location: "San Diego, CA", date: "03/03/2020")
+
+      @contestant_outing_1 = ContestantOuting.create!(contestant_id: @contestant_1.id, outing_id: @outing_1.id)
+      @contestant_outing_2 = ContestantOuting.create!(contestant_id: @contestant_2.id, outing_id: @outing_2.id)
+      @contestant_outing_3 = ContestantOuting.create!(contestant_id: @contestant_3.id, outing_id: @outing_3.id)
+    end
+    it "#contestant_count" do
+    expect(@outing_1.contestant_count).to eq(1)
+    end
+  end
 end

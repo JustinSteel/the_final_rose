@@ -1,0 +1,9 @@
+<h1>Outing Show</h1>
+<p><%= @outing.name %> - <%= @outing.location %> - <%= @outing.date %></p>
+<p>Contestant Count: <%= @outing.contestant_count %></p>
+<p>Contestants:</p>
+  <%= @contestants.each do |contestant| %>
+    <%= contestant.name %> <%= link_to "Remove", remove_contestant_path(@outing, contestant), method: :delete %>
+    
+    <% end %>
+    

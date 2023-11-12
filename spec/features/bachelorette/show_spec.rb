@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Bachelorette, type: :feature do
   describe "As a visitor" do
     before :each do
-      @bachelorette_1 = Bachelorette.create!(name: "Ann Franks", season_number: 15)
+      @bachelorette_1 = Bachelorette.create!(name: "Ann Franks", season_number: 12)
       @bachelorette_2 = Bachelorette.create!(name: "Hannah Banana", season_number: 13)
       
       @contestant_1 = @bachelorette_1.contestants.create!(name: "Dylan Barbour", age: 24, hometown: "San Diego, CA")
@@ -54,6 +54,19 @@ RSpec.describe Bachelorette, type: :feature do
       expect(page).to have_content(@contestant_1.name)
       expect(page).to have_content(@contestant_2.name)
       expect(page).to_not have_content(@contestant_3.name)
+    end
+
+    it "I see the average age of all of that bachelorette's contestants" do
+      # User Story 6 of 7 - Bachelorette Show Page: Average age
+
+      # As a visitor,
+      # When I visit a bachelorette show page
+      # I see the average age of all of that bachelorette's contestants
+      
+      # (e.g. "Average Age of Contestants: 29.5")
+      visit "/bachelorettes/#{@bachelorette_1.id}"
+
+      expect(page).to have_content("Average Age: 25")
     end
   end
 end
